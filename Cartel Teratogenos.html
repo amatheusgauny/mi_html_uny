@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartel Digital Universitario</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define la fuente Inter para todo el documento */
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinea al inicio para que el cartel no se centre verticalmente de forma estricta */
+            min-height: 100vh; /* Asegura que el cuerpo ocupe al menos la altura de la ventana */
+            background-color: #f0f0f0; /* Color de fondo suave */
+            padding: 2rem 0; /* Espacio superior e inferior para el cartel */
+        }
+        /* Estilo para el contenedor principal del cartel para simular el ancho de 90cm */
+        .poster-container {
+            max-width: 900px; /* Aproximadamente 90cm en 96DPI, pero será responsivo */
+            width: 95%; /* Ocupa el 95% del ancho disponible en pantallas más pequeñas */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+            border-radius: 1rem; /* Bordes redondeados para todo el cartel */
+            overflow: hidden; /* Asegura que el contenido redondeado no sobresalga */
+            background-color: white; /* Fondo blanco para el cartel */
+        }
+
+        /* Ajustes para el cintillo superior */
+        .header-band {
+            height: 200px; /* Aproximadamente 20cm */
+            background: linear-gradient(to right, #6366f1, #8b5cf6); /* Gradiente de morado a púrpura */
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Espacia los elementos verticalmente */
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Estilo para el título en forma de pirámide invertida */
+        .pyramid-title {
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: bold;
+            line-height: 1.1; /* Espaciado entre líneas */
+            margin-top: 1rem; /* Margen superior para el título */
+        }
+        .pyramid-title span:nth-child(1) { font-size: 2.5rem; } /* Más grande */
+        .pyramid-title span:nth-child(2) { font-size: 2rem; }
+        .pyramid-title span:nth-child(3) { font-size: 1.5rem; } /* Más pequeño */
+
+        /* Estilo para el logo (placeholder) */
+        .logo-placeholder {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%; /* Circular */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Área de contenido principal */
+        .content-area {
+            min-height: 400px; /* Altura mínima para el contenido */
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr; /* Una columna por defecto */
+            gap: 2rem; /* Espacio entre secciones */
+        }
+
+        @media (min-width: 768px) { /* Para pantallas medianas y grandes */
+            .content-area {
+                grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+            }
+        }
+
+        @media (min-width: 1024px) { /* Para pantallas grandes (desktops) */
+            .content-area {
+                grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+            }
+        }
+
+        .content-section {
+            background-color: #f9fafb; /* Fondo ligeramente diferente para secciones */
+            padding: 1.5rem;
+            border-radius: 0.75rem; /* Bordes redondeados para secciones */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            line-height: 1.6;
+        }
+
+        .content-section h3 {
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #4f46e5; /* Color morado para los títulos de sección */
+        }
+
+        .example-box {
+            background-color: #ecfdf5; /* Fondo verde claro para ejemplos */
+            border-left: 5px solid #10b981; /* Borde verde para destacar */
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            color: #065f46;
+            font-style: italic;
+        }
+
+        /* Área de referencias */
+        .references-area {
+            background-color: #e0e7ff; /* Fondo azul claro */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 1.5rem; /* Margen para separarlo del contenido si no está al final de una sección */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .references-area h3 {
+            font-weight: bold;
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            color: #4338ca;
+        }
+        .references-area ul {
+            list-style-type: disc; /* Viñetas */
+            margin-left: 1.25rem;
+        }
+        .references-area li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="poster-container">
+        <!-- Cintillo Superior -->
+        <div class="header-band rounded-t-xl">
+            <div class="logo-placeholder">UNY</div> <!-- Logo Placeholder -->
+
+            <div class="pyramid-title">
+                <span>EFECTOS TERATÓGENOS</span><br>
+                <span>EN EL SER HUMANO Y EL</span><br>
+                <span>IMPACTO DEL ESTUDIO EXPERIMENTAL</span><br>
+                <span>EN LOS SERES VIVOS</span>
+            </div>
+
+            <div class="text-xs text-right mt-auto">
+                <p>Aníbal Matheus</p>
+                <p>Facultad de Humanidades, Psicología</p>
+                <p>Docente: Prof.Luisaurys Yubiry Díaz Roa</p>
+            </div>
+        </div>
+
+        <!-- Área de Contenido Principal -->
+        <div class="content-area">
+
+            <!-- Sección 1: Introducción a los Efectos Teratógenos -->
+            <div class="content-section">
+                <h3>¿Qué son los Efectos Teratógenos?</h3>
+                <p>Los efectos teratógenos se refieren a las anomalías congénitas o defectos de nacimiento causados por la exposición a agentes externos (teratógenos) durante el desarrollo embrionario o fetal. Estos agentes pueden ser químicos, físicos o biológicos, y su impacto depende del momento, la dosis y la duración de la exposición.</p>
+                <div class="example-box">
+                    <p><strong>Ejemplo: Talidomida.</strong> Un sedante introducido en los años 50 que causó focomelia (malformación de las extremidades) en miles de recién nacidos, demostrando el grave impacto de ciertos fármacos durante el embarazo.</p>
+                </div>
+            </div>
+
+            <!-- Sección 2: Tipos de Agentes Teratógenos -->
+            <div class="content-section">
+                <h3>Clasificación de Teratógenos</h3>
+                <p>Los teratógenos se clasifican en varias categorías:</p>
+                <ul class="list-disc ml-5 mt-2">
+                    <li><strong>Fármacos y Químicos:</strong> Alcohol, isotretinoína, algunos antiepilépticos, metales pesados.</li>
+                    <li><strong>Infecciones:</strong> Virus de la rubeola, citomegalovirus, toxoplasmosis, zika.</li>
+                    <li><strong>Agentes Físicos:</strong> Radiaciones ionizantes, hipertermia materna severa.</li>
+                    <li><strong>Enfermedades Maternas:</strong> Diabetes mellitus no controlada, fenilcetonuria.</li>
+                </ul>
+                <div class="example-box">
+                    <p><strong>Ejemplo: Alcohol.</strong> El consumo de alcohol durante el embarazo puede llevar al Síndrome Alcohólico Fetal (SAF), caracterizado por anomalías faciales, retraso del crecimiento y problemas neurológicos.</p>
+                </div>
+            </div>
+
+            <!-- Sección 3: El Estudio Experimental en Seres Vivos -->
+            <div class="content-section">
+                <h3>Impacto del Estudio Experimental</h3>
+                <p>Los estudios experimentales en modelos animales (ratones, ratas, conejos, primates no humanos) son fundamentales para identificar posibles teratógenos antes de que una sustancia sea aprobada para uso humano. Permiten evaluar la toxicidad reproductiva y el potencial teratogénico bajo condiciones controladas.</p>
+                <p>Estos estudios ayudan a:</p>
+                <ul class="list-disc ml-5 mt-2">
+                    <li>Establecer dosis seguras y umbrales de exposición.</li>
+                    <li>Comprender los mecanismos de acción de los teratógenos.</li>
+                    <li>Identificar biomarcadores de exposición y efectos.</li>
+                </ul>
+            </div>
+
+            <!-- Sección 4: Ejemplos de Estudios Experimentales -->
+            <div class="content-section">
+                <h3>Ejemplos de Aplicación en Investigación</h3>
+                <p>La investigación experimental ha sido crucial para entender los efectos teratógenos.</p>
+                <div class="example-box">
+                    <p><strong>Estudios con Retinoides:</strong> Modelos animales han demostrado que altas dosis de retinoides (derivados de la vitamina A) pueden causar malformaciones craneofaciales y del sistema nervioso central, lo que llevó a estrictas advertencias para su uso en humanos.</p>
+                </div>
+                <div class="example-box">
+                    <p><strong>Investigación con Zika:</strong> Estudios en ratones y primates han replicado la microcefalia y otras anomalías cerebrales observadas en fetos humanos, confirmando el virus Zika como un potente teratógeno y facilitando el desarrollo de estrategias preventivas.</p>
+                </div>
+            </div>
+
+            <!-- Sección 5: Conclusiones y Prevención -->
+            <div class="content-section">
+                <h3>Conclusiones y Medidas Preventivas</h3>
+                <p>La comprensión de los efectos teratógenos y el papel del estudio experimental son vitales para la salud pública. La prevención es clave e incluye la educación sobre los riesgos, el uso cauteloso de medicamentos durante el embarazo y la vacunación adecuada.</p>
+                <p>Se enfatiza la importancia de:</p>
+                <ul class="list-disc ml-5 mt-2">
+                    <li>Asesoramiento preconcepcional.</li>
+                    <li>Control prenatal riguroso.</li>
+                    <li>Evitar la auto-medicación.</li>
+                    <li>Exposición mínima a factores de riesgo ambientales.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Parte Inferior Izquierda: Referencias -->
+        <div class="references-area rounded-b-xl">
+            <h3>Referencias</h3>
+            <ul>
+                <li>Smith, J. A. (2020). <em>Teratogenesis: Mechanisms and Prevention.</em> Academic Press.</li>
+                <li>Jones, B. K. (2022). <em>Experimental Models in Developmental Toxicology.</em> Springer.</li>
+                <li>Organización Mundial de la Salud. (2019). <em>Defectos Congénitos: Guía para la Prevención.</em> OMS Publicaciones.</li>
+                <li>National Institutes of Health. (2021). <em>Teratogenic Agents Database.</em> NIH.gov.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
